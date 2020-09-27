@@ -9,12 +9,16 @@ import Table from 'components/Table';
 import { fetchUsers, deleteUser, usersCleanUp } from 'state/actions/users';
 import paths from 'pages/Router/paths';
 import ConfirmationModal from 'components/ConfirmationModal';
+import { closeModal, openModal } from 'utils';
+
 import classes from './Users.module.scss';
 
 const Users = () => {
   const { usersList, isAdmin, error, loading, deleted } = useSelector(
     (state) => ({
-      usersList: state.users.data,
+      usersList: state.users.data.filter(
+        (user) => user.id !== state.auth.userData.id
+      ),
       isAdmin: state.auth.userData.isAdmin,
       error: state.users.error,
       loading: state.users.loading,
@@ -51,15 +55,8 @@ const Users = () => {
 
   const redirect = !isAdmin && <Redirect to={paths.ROOT} />;
 
-  const onRemoveButtonClickHandler = (userId) => {
-    setDeleteModal((prevState) => ({
-      userId,
-      isOpen: !prevState.isOpen,
-    }));
-  };
-
   const onCloseModalHandler = () => {
-    setDeleteModal({ userId: null, isOpen: false });
+    closeModal(setDeleteModal);
   };
 
   const onDeleteUserHandler = () => {
@@ -140,7 +137,7 @@ const Users = () => {
               <button
                 type="button"
                 className="button is-small is-danger"
-                onClick={() => onRemoveButtonClickHandler(row.original.id)}
+                onClick={() => openModal(setDeleteModal, row.original.id)}
               >
                 <span className="icon is-small">
                   <i className="mdi mdi-trash-can" />
@@ -160,6 +157,7 @@ const Users = () => {
         delete clonedElem.id;
         delete clonedElem.isAdmin;
         delete clonedElem.logoUrl;
+        delete clonedElem.teams;
         return Object.values(clonedElem).some((field) =>
           field.toLowerCase().includes(search.toLowerCase())
         );

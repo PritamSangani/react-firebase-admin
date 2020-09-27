@@ -13,7 +13,7 @@ export const fetchDocument = async (collection, id) => {
 export const fetchCollection = async (collection, options = {}) => {
   let baseQuery = getRealTimeRef(collection);
 
-  if (options.filterBy) {
+  if (options.filterBy && !options.isArray) {
     const { filterBy, value } = options;
     baseQuery = baseQuery.orderByChild(filterBy).equalTo(value);
   }

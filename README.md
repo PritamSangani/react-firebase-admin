@@ -5,7 +5,9 @@
 
 Boilerplate with React ⚛️ and Firebase 🔥designed to quickly spin up a fully functional admin dashboard with authentication, authorization, Realtime Database / Firestore, built-in CI/CD, file upload and more. We're using up to date industry standards and next-gen technologies like React (with hooks), redux, bulma, sass, webpack, routing and a serverless architecture.
 
-![Boilerplate - Users page](https://imgur.com/7jIt6jh.png)
+![Boilerplate - Users page](https://imgur.com/MWFS3nO.png)
+
+![Boilerplate - Teams page](https://imgur.com/4rpbXwd.png)
 
 ---
 
@@ -65,7 +67,8 @@ React Firebase Admin is our in-house admin dashboard boilerplate, used in many o
 - PWA ready thanks to CRA and Firebase
 - Multi-tenancy
 - Internationalization (English/Spanish)
-- Ability to choose between Firebase Realtime Database or Firestore
+- Create/modify/delete teams
+- Add/delete team members
 
 ## Tech Stack
 

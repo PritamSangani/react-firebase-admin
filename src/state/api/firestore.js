@@ -15,6 +15,13 @@ export const fetchCollection = async (collection, options = {}) => {
   const data = [];
   let baseQuery = getFirestoreRef(collection);
 
+  if (options.filterBy) {
+    const { filterBy, value, isArray } = options;
+    baseQuery = isArray
+      ? baseQuery.where(filterBy, 'array-contains', value)
+      : baseQuery.where(filterBy, '==', value);
+  }
+
   if (options.queries) {
     const { queries } = options;
     queries.forEach(({ attribute, operator, value }) => {

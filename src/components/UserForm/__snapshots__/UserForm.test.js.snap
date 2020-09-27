@@ -278,12 +278,11 @@ exports[`<UserForm /> rendering should render without crashing 1`] = `
                         </span>
                       </button>
                     </div>
-                    <a
+                    <div
                       class="button"
-                      href="/users"
                     >
                       Go Back
-                    </a>
+                    </div>
                   </div>
                 </div>
               </div>
